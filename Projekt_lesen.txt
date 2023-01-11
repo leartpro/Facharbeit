@@ -1,0 +1,49 @@
+In diesem Dokument wird beschrieben, wie das Projekt "Quap" (der praktische Teil dieser Facharbeit)
+ausgeführt und getestet werden kann.
+
+Zunächst muss der beiliegende Ordner Quap, mit der IDE IntelliJ geöffnet werden.
+In IntelliJ sollte als Projekt SDK die JDK-16 oder höher verwendet werden.
+
+Der Server benötigt desweiteren eine Postgres Installation.
+Und der Client benötigt 
+Dabei sollte mit folgenden Parametern erfolgreich eine Verbindung hergestellt werden können:
+
+URL: jdbc:postgresql://localhost:5432/postgres
+User: postgres
+Password: postgres
+
+Anschließend müssen in den Run-Configurations ("Run" > "Edit Configurations...")
+die CLI Argumente angepasst werden.
+So muss unter "Application" die "DesktopApp" Konfiguration bearbeitet werden,
+indem die Dummy-IP-Adresse durch die eigene lokale Adresse ersetzt wird.
+(Unter Linux kann diese mit "ifconfig -a" unter einem non-loopback-interface gefunden werden)
+
+Dasselbe muss für "Server", ebenfalls unter "Application" ausgeführt werden, 
+wobei hier zusätzlich ein gültiger TCP-Port (8192 ist bereits ein gültiger TCP-Port) angegeben werden muss.
+
+Für den DesktopApp-Run in "Jar Application" muss desweiteren noch die "VM options" angepasst werden auf:
+--module-path \"PATH TO YOUR JAVA FX SDK"\javafx-sdk-17.0.0.1\lib --add-modules=javafx.controls,javafx.fxml
+wobei "PATH TO YOUR JAVA FX SDK" ersetzt werden muss. (Dieser Schritt ist nur für einen Run, über die .jar erforderlich und kann nach belieben nachgeholt werden)
+
+Als nächstes muss einmalig "create-db.sql", welches in den "Run Configurations" unter "Database Script" gefunden werden kann,
+ausgeführt werden, um die Tables der Server-Datenbank zu initialisieren.
+
+Anschließend kann der Server-Run ausgeführt werden und nach einem erfolgreichen Start dessen auch der DesktopApp-Run.
+
+Alternativ können die oben genannten Schritte auch für die Run's aus "Jar Application"
+anstatt aus "Application" ausgeführt werden.
+
+Nach einer erfolgreichen Installation nach den oben genannten Schritten, sollte ein Ladefenster,
+gefolgt von einem Login-Fenster erscheinen. Hier kann über "SignUp" ein neuer Account erstellt werden.
+Ein gültiger Name besteht dabei aus vier bis zwölf Zeichen und ein gültiges Passwort besteht aus:
+-mindestens acht Zeichen
+-maximax zwölf Zeichen
+-Zahlen
+-Großbuchstaben
+-Kleinbuchstaben
+-Sonderzeichen, wie z.B. !?#
+
+Über das "+" Symbol können Chats erstellt oder Freunde hinzugefügt werden.
+In der Listen-Ansicht stellt ein Rechtsklick weitere Funktionen zu Verfügung.
+
+ 
